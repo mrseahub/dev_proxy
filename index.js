@@ -15,9 +15,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.all('/', async (req, res) => {
-    console.log('app.all', req);
     try {
         const { method, headers, path, body } = req;
+        if(method === 'GET'){
+            return res.status(200).send("ok");
+        }
 
         // Записываем в Firestore
         await db.collection('render').add({
@@ -51,6 +53,7 @@ app.all('/', async (req, res) => {
 
         res.status(proxyResponse.status).send(text);
     } catch (error) {
+        console.log(`error ${error.message}`);
         res.status(500).send(error.message);
     }
 });
