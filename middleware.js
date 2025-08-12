@@ -16,13 +16,10 @@ export default function middleware(req) {
     method,
     headers,
     body,
-    timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    timestamp: Date.now(),
   });
 
   try {
-
-
-
     return new Response("Message envoyé avec succès", {
       status: 200
     });
