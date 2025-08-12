@@ -1,3 +1,4 @@
+import admin from 'firebase-admin';
 export const config = {
   matcher: ['/api/:path*'],
   runtime: 'edge',
