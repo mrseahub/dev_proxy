@@ -4,7 +4,7 @@ export const config = {
 };
 
 export default function middleware(req) {
-  const { method, headers, path, body } = req;
+  const { method, headers, url, body } = req;
   if (method === 'GET') {
     return new Response("ok", {
       status: 200
@@ -12,11 +12,12 @@ export default function middleware(req) {
   }
 
   console.log({
-    path,
+    url,
     method,
-    headers,
+    headers: Object.fromEntries(
+      Object.entries(headers).filter(([key]) => !key.toLowerCase().startsWith('x-vercel-'))
+    ),
     body,
-    timestamp: Date.now(),
   });
 
   try {
