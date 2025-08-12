@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.all('/', async (req, res) => {
+app.use(async (req, res) => {
     try {
         const { method, headers, path, body } = req;
         if(method === 'GET'){
