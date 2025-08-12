@@ -1,0 +1,9 @@
+[build]
+  functions = "functions"
+
+[[redirects]]
+  from = "/pablo/dev/*"
+  to = "/.netlify/functions/netlify"
+  status = 200
+  force = true
+  methods = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
