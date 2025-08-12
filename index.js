@@ -58,8 +58,9 @@ app.use(async (req, res) => {
 
         const proxyResponse = await fetch(targetUrl, fetchOptions);
         const text = await proxyResponse.text();
+        console.log('proxyResponse', text);
 
-        res.status(proxyResponse.status).send(text);
+        res.status(200).send(text);
     } catch (error) {
         console.log(`error ${error.message}`);
         res.status(500).send(error.message);
