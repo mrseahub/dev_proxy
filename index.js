@@ -32,6 +32,8 @@ app.all('/', async (req, res) => {
 
         // Прокси целевой URL
         const targetUrl = `https://development.airvat.dev${path}`;
+        console.log('targetUrl', targetUrl);
+        
 
         // fetch с правильной обработкой тела
         const fetchOptions = {
