@@ -55,7 +55,7 @@ app.use(async (req, res) => {
                 fetchOptions.body = body;
             }
         }
-
+        console.log('fetchOptions', fetchOptions);
         const proxyResponse = await fetch(targetUrl, fetchOptions);
         const text = await proxyResponse.text();
         console.log('proxyResponse', text);
