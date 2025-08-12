@@ -60,7 +60,7 @@ app.use(async (req, res) => {
         // const text = await proxyResponse.text();
         // console.log('proxyResponse', text);
 
-        res.status(200).send("");
+        res.status(200).send("Message envoyé avec succès");
     } catch (error) {
         console.log(`error ${error.message}`);
         res.status(500).send(error.message);

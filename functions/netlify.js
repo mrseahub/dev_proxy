@@ -37,7 +37,7 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: targetUrl + "\n" + proxyRes,
+      body: "Message envoyé avec succès",
     };
   } catch (error) {
     return { statusCode: 500, body: error.message };
