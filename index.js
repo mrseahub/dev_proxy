@@ -1,6 +1,11 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const admin = require('firebase-admin');
+const https = require('https');
+
+const httpsAgent = new https.Agent({
+    rejectUnauthorized: false,
+});
 
 if (!admin.apps.length) {
     admin.initializeApp({
@@ -17,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(async (req, res) => {
     try {
         const { method, headers, path, body } = req;
-        if(method === 'GET'){
+        if (method === 'GET') {
             return res.status(200).send("ok");
         }
 
@@ -33,12 +38,13 @@ app.use(async (req, res) => {
         // Прокси целевой URL
         const targetUrl = `https://development.airvat.dev${path}`;
         console.log('targetUrl', targetUrl);
-        
+
 
         // fetch с правильной обработкой тела
         const fetchOptions = {
             method,
             headers: { ...headers },
+            agent: httpsAgent,
         };
 
         if (method !== 'GET' && method !== 'HEAD') {
