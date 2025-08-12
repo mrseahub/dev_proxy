@@ -14,9 +14,7 @@ export default function middleware(req) {
   console.log({
     url,
     method,
-    headers: Object.fromEntries(
-      Object.entries(headers).filter(([key]) => !key.toLowerCase().startsWith('x-vercel-'))
-    ),
+    headers,
     body,
   });
 
