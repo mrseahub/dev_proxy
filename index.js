@@ -36,7 +36,7 @@ app.use(async (req, res) => {
         });
 
         // Прокси целевой URL
-        const targetUrl = `https://development.airvat.dev${path}`;
+        const targetUrl = `https://development.airvat.dev/pablo${path}`;
         console.log('targetUrl', targetUrl);
 
 
