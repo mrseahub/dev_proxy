@@ -2,9 +2,6 @@ const express = require('express');
 const fetch = require('node-fetch');
 const admin = require('firebase-admin');
 
-console.log(process.env.FIREBASE);
-
-
 if (!admin.apps.length) {
     admin.initializeApp({
         credential: admin.credential.cert(JSON.parse(process.env.FIREBASE)),
@@ -17,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.all('*', async (req, res) => {
+app.all('/', async (req, res) => {
     console.log('app.all', req);
     try {
         const { method, headers, path, body } = req;
