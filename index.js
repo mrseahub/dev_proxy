@@ -25,8 +25,6 @@ app.use(async (req, res) => {
         if (method === 'GET') {
             return res.status(200).send("ok");
         }
-
-        // Записываем в Firestore
         await db.collection('render').add({
             path,
             method,
@@ -34,31 +32,6 @@ app.use(async (req, res) => {
             body,
             timestamp: admin.firestore.FieldValue.serverTimestamp(),
         });
-
-        // Прокси целевой URL
-        // const targetUrl = `https://development.airvat.dev/pablo${path}`;
-        // console.log('targetUrl', targetUrl);
-
-
-        // // fetch с правильной обработкой тела
-        // const fetchOptions = {
-        //     method,
-        //     headers: { ...headers },
-        //     agent: httpsAgent,
-        // };
-
-        // if (method !== 'GET' && method !== 'HEAD') {
-        //     if (typeof body === 'object') {
-        //         fetchOptions.body = JSON.stringify(body);
-        //         fetchOptions.headers['Content-Type'] = 'application/json';
-        //     } else {
-        //         fetchOptions.body = body;
-        //     }
-        // }
-        // console.log('fetchOptions', fetchOptions);
-        // const proxyResponse = await fetch(targetUrl, fetchOptions);
-        // const text = await proxyResponse.text();
-        // console.log('proxyResponse', text);
 
         res.status(200).send("Message envoyé avec succès");
     } catch (error) {
