@@ -36,31 +36,31 @@ app.use(async (req, res) => {
         });
 
         // Прокси целевой URL
-        const targetUrl = `https://development.airvat.dev/pablo${path}`;
-        console.log('targetUrl', targetUrl);
+        // const targetUrl = `https://development.airvat.dev/pablo${path}`;
+        // console.log('targetUrl', targetUrl);
 
 
-        // fetch с правильной обработкой тела
-        const fetchOptions = {
-            method,
-            headers: { ...headers },
-            agent: httpsAgent,
-        };
+        // // fetch с правильной обработкой тела
+        // const fetchOptions = {
+        //     method,
+        //     headers: { ...headers },
+        //     agent: httpsAgent,
+        // };
 
-        if (method !== 'GET' && method !== 'HEAD') {
-            if (typeof body === 'object') {
-                fetchOptions.body = JSON.stringify(body);
-                fetchOptions.headers['Content-Type'] = 'application/json';
-            } else {
-                fetchOptions.body = body;
-            }
-        }
-        console.log('fetchOptions', fetchOptions);
-        const proxyResponse = await fetch(targetUrl, fetchOptions);
-        const text = await proxyResponse.text();
-        console.log('proxyResponse', text);
+        // if (method !== 'GET' && method !== 'HEAD') {
+        //     if (typeof body === 'object') {
+        //         fetchOptions.body = JSON.stringify(body);
+        //         fetchOptions.headers['Content-Type'] = 'application/json';
+        //     } else {
+        //         fetchOptions.body = body;
+        //     }
+        // }
+        // console.log('fetchOptions', fetchOptions);
+        // const proxyResponse = await fetch(targetUrl, fetchOptions);
+        // const text = await proxyResponse.text();
+        // console.log('proxyResponse', text);
 
-        res.status(200).send(text);
+        res.status(200).send("");
     } catch (error) {
         console.log(`error ${error.message}`);
         res.status(500).send(error.message);
