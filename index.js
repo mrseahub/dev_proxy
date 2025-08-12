@@ -4,7 +4,7 @@ const admin = require('firebase-admin');
 
 if (!admin.apps.length) {
   admin.initializeApp({
-    credential: admin.credential.cert({}), // пустой объект
+    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE)),
   });
 }
 
